@@ -21,6 +21,8 @@ import random
 def wolffAlgorithm(lattice: LatticeInterface, beta: float, T: float, nCycles: int) -> tuple[list[float], list[float]]:
     energies = [] # Initialize energies array
     avgMag = []
+    clones = []
+    clones.append(lattice.clone())
     E = lattice.getE()
     energies.append(E) # Add initial energy of lattice to energies array
     avgMag.append(lattice.getM())
@@ -56,6 +58,7 @@ def wolffAlgorithm(lattice: LatticeInterface, beta: float, T: float, nCycles: in
         E = lattice.getE() # Get the energy of the entire lattice and append to the energies array
         energies.append(E)
         avgMag.append(lattice.getM())
+        clones.append(lattice.clone())
 
 
-    return energies, avgMag
+    return energies, avgMag, clones

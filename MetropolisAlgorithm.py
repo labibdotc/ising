@@ -5,6 +5,8 @@ import random
 def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles: int) -> tuple[list[float], list[float]]:
   energies = []
   avgMag = []
+  clones = []
+  clones.append(lattice.clone())
 
   E = lattice.getE()
   energies.append(E)
@@ -21,4 +23,5 @@ def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles:
       E = E1
     energies.append(E)
     avgMag.append(lattice.getM())
-  return energies, avgMag
+    clones.append(lattice.clone())
+  return energies, avgMag, clones
