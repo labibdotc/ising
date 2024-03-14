@@ -7,7 +7,7 @@
 # 1. Choose a random single site to build a cluster
 # 2. Consider links to initial site:
 #       p_l_min = 0
-#       p_l_plus = 1 - exp(-2*beta*sigma_min*sigma_plus)
+#       p_l_plus = 1 - exp(-2*beta*sigma_min*sigma_plus) beta is J
 # 3. Given set of sites added to cluster in previous update, consider links to sites outside cluster:
 #       Activate l_plus links with probabilty p_l_plus
 # 4. Loop back to Step 3 until set of links left for activation in next round is empty.
@@ -18,7 +18,7 @@ import LatticeInterface
 import numpy as np
 import random
 
-def wolffAlgorithm(lattice: LatticeInterface, beta: float, T: float, nCycles: int) -> tuple[list[float], list[float]]:
+def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) -> tuple[list[float], list[float]]:
     energies = [] # Initialize energies array
     avgMag = []
     clones = []
@@ -36,7 +36,7 @@ def wolffAlgorithm(lattice: LatticeInterface, beta: float, T: float, nCycles: in
             if not cluster[neighbor] and not activated[neighbor]: ### MAY BE WRONG - wraparound
                 # n_idx = lattice[neighbor]
                 if lattice.getSpin(neighbor) == lattice.getSpin(curr): # Only give probability >= zero if neighbor and current have same spin
-                    p_activate = 1 - np.exp(-2 * beta) # I don't think this is correct ? Should incorporate spins I think. Maybe not because they already are.
+                    p_activate = 1 - np.exp(-2 * J) # I don't think this is correct ? Should incorporate spins I think. Maybe not because they already are.
                     if p_activate > random.random():
                         cluster[neighbor] = 1 # Add the activated neighbor to the cluster...
                         activated[neighbor] = 1 # and activate it.

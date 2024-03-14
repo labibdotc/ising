@@ -27,6 +27,6 @@ def runMetropolis(lattice: li.LatticeInterface, plot, N, T, kB) -> tuple[list[fl
   name = f'Metropolis (T={T}K)'
   return testAlgorithm(name, lattice.clone(), lambda x: m_a.metropolisAlgorithm(x, kB, T, N), plot)
 
-def runWolff(lattice: li.LatticeInterface, plot, N, T, beta) -> tuple[list[float],list[float]]:
+def runWolff(lattice: li.LatticeInterface, plot, N, T, J) -> tuple[list[float],list[float]]:
   name = f'Wolff (T={T}K)'
-  return testAlgorithm(name, lattice.clone(), lambda x: w_a.wolffAlgorithm(x, beta, T, N), plot)
+  return testAlgorithm(name, lattice.clone(), lambda x: w_a.wolffAlgorithm(x, J, T, N), plot)
