@@ -6,22 +6,24 @@ def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles:
   energies = []
   avgMag = []
   clones = []
+  n = lattice.getN()
+  m = lattice.getM()
   clones.append(lattice.clone())
 
   E = lattice.getE()
   energies.append(E)
   for n in range(nCycles):
-    for i in range(lattice.getN()):# Pick a lattice site i
+    for i in range(n):# Pick a lattice site i
       lattice.flipSpin(i)# Flip the spin at that site
       E1 = lattice.getE()
       deltaE = E1 - E# Calculate the change in energy ΔE
       if (deltaE < 0 or (random.random() < np.exp(-deltaE/(kB*T)))):
-        pass# Accept the move
+        E = E1# Accept the move
       else:
         lattice.flipSpin(i)# Swap the spin back
 
-      E = E1
+
     energies.append(E)
-    avgMag.append(lattice.getM())
+    avgMag.append(m)
     clones.append(lattice.clone())
   return energies, avgMag, clones

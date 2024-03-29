@@ -33,10 +33,9 @@ def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) 
 
         for neighbor in neighbors: # Loop through the 4 neighbors
             # If neighbor is not part of cluster and not activated, run probabilistic analysis
-            if not cluster[neighbor] and not activated[neighbor]: ### MAY BE WRONG - wraparound
-                # n_idx = lattice[neighbor]
+            if not cluster[neighbor] and not activated[neighbor]:
                 if lattice.getSpin(neighbor) == lattice.getSpin(curr): # Only give probability >= zero if neighbor and current have same spin
-                    p_activate = 1 - np.exp(-2 * J) # I don't think this is correct ? Should incorporate spins I think. Maybe not because they already are.
+                    p_activate = 1 - np.exp(-2 * J / T) # Calculate activate probability
                     if p_activate > random.random():
                         cluster[neighbor] = 1 # Add the activated neighbor to the cluster...
                         activated[neighbor] = 1 # and activate it.
@@ -48,7 +47,7 @@ def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) 
         cluster = [0 for _ in range(N)] # Creates an array of N zeros
         activated = [0 for _ in range(N)] # Creates an array of N zeros
 
-        cluster[curr - 1] = 1 # Adds the current point to the cluster ## IS -1 CORRECT???
+        cluster[curr - 1] = 1 # Adds the current point to the cluster
         activate_links(curr, cluster, activated) # Runs activate_links() on the current point
 
         for i in range(N): # Loop through the entire lattice and flip the spins of every point in the cluster
@@ -59,6 +58,5 @@ def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) 
         energies.append(E)
         avgMag.append(lattice.getM())
         clones.append(lattice.clone())
-
 
     return energies, avgMag, clones
