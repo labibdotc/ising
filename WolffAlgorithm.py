@@ -2,16 +2,19 @@ import LatticeInterface
 import numpy as np
 import random
 
-def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) -> tuple[list[float], list[float]]:
+def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int, animate: bool) -> tuple[list[float], list[float]]:
     energies = [] # Initialize energies array
     avgMag = []
     clones = []
-    clones.append(lattice.clone())
+
     E = lattice.getE()
-    energies.append(E) # Add initial energy of lattice to energies array
-    avgMag.append(lattice.getM())
     N = lattice.getN() # Get size of lattice
 
+    energies.append(E) # Add initial energy of lattice to energies array
+    avgMag.append(lattice.getM())
+    if (animate):
+        clones.append(lattice.clone())
+    
     def activate_links(curr, cluster, activated):
         neighbors = lattice.getNeighbors(curr) # Create an array of 4 neighbors
 
@@ -41,6 +44,7 @@ def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) 
         E = lattice.getE() # Get the energy of the entire lattice and append to the energies array
         energies.append(E)
         avgMag.append(lattice.getM())
-        clones.append(lattice.clone())
+        if (animate):
+            clones.append(lattice.clone())
 
     return energies, avgMag, clones
