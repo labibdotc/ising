@@ -2,13 +2,14 @@ import LatticeInterface
 import numpy as np
 import random
 
-def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles: int) -> tuple[list[float], list[float]]:
+def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles: int, animate: bool) -> tuple[list[float], list[float]]:
   energies = []
   avgMag = []
   clones = []
   n = lattice.getN()
   m = lattice.getM()
-  clones.append(lattice.clone())
+  if (animate):
+    clones.append(lattice.clone())
 
   E = lattice.getE()
   energies.append(E)
@@ -24,5 +25,6 @@ def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles:
 
     energies.append(E)
     avgMag.append(m)
-    clones.append(lattice.clone())
+    if (animate):
+      clones.append(lattice.clone())
   return energies, avgMag, clones

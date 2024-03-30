@@ -7,7 +7,10 @@ param_N = 10
 param_T = 0.000001
 param_kB = 1#1.380649E-23
 param_J = 1
-param_ncycles = 500
+param_ncycles = 150
+
+algorithms.clonesOn = False
+algorithms.plotsOn = False
 
 # Create the lattice using the parameters
 globalLattice = matrix.MatrixLattice(param_J, param_N)
@@ -35,6 +38,7 @@ tempArr = []
 
 ## Wolff ##
 for n in range(50):
+for n in range(50):
   energies_w, mag_w, _ = algorithms.runWolff(globalLattice, plt, param_ncycles, param_T, param_J)
   mag_w = np.absolute(mag_w[100:])
   energies_w = np.absolute(energies_w[100:])
@@ -49,10 +53,4 @@ plt.plot(tempArr, magnetizationArr)
 plt.xlabel('Temperature (Nondimensionalized)')
 plt.ylabel('Average Abs Val Magnetization (Stable Zone)')
 plt.title('Magnetization vs. Temperature')
-plt.show()
-
-plt.plot(tempArr, energiesArr)
-plt.xlabel('Temperature (Nondimensionalized)')
-plt.ylabel('Average Abs Val Energy (Stable Zone)')
-plt.title('Energy vs. Temperature')
 plt.show()
