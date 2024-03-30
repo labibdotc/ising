@@ -22,7 +22,6 @@ def metropolisAlgorithm(lattice: LatticeInterface, kB: float, T: float, nCycles:
       else:
         lattice.flipSpin(i)# Swap the spin back
 
-
     energies.append(E)
     avgMag.append(m)
     clones.append(lattice.clone())

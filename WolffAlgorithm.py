@@ -1,19 +1,3 @@
-## This code was written using ChatGPT by feeding a detailed pseudocode outline and the beginning of an implementation scheme.
-## This is testable once main() is completed and should work properly.
-## I cleaned up the ChatGPT code and this SOMETIMES works.
-# TODO: Fix the wraparound. Indices get out of bounds sometimes.
-
-# Basic pseudocode outline:
-# 1. Choose a random single site to build a cluster
-# 2. Consider links to initial site:
-#       p_l_min = 0
-#       p_l_plus = 1 - exp(-2*beta*sigma_min*sigma_plus) beta is J
-# 3. Given set of sites added to cluster in previous update, consider links to sites outside cluster:
-#       Activate l_plus links with probabilty p_l_plus
-# 4. Loop back to Step 3 until set of links left for activation in next round is empty.
-# 5. Flip whole cluster with probability 1. Loop back to step 1.
-
-# from random import randint, exp
 import LatticeInterface
 import numpy as np
 import random
@@ -26,7 +10,7 @@ def wolffAlgorithm(lattice: LatticeInterface, J: float, T: float, nCycles: int) 
     E = lattice.getE()
     energies.append(E) # Add initial energy of lattice to energies array
     avgMag.append(lattice.getM())
-    N = lattice.getN() # Get size of lattice - or should this be sqrt(N) ?
+    N = lattice.getN() # Get size of lattice
 
     def activate_links(curr, cluster, activated):
         neighbors = lattice.getNeighbors(curr) # Create an array of 4 neighbors
