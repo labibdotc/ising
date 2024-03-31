@@ -49,6 +49,5 @@ def animate(clones, plot):
         return ax
 
     ani = animation.FuncAnimation(fig, update, frames=len(clones), interval=200, repeat=False)
-    """Display using HTML"""
-    HTML(ani.to_jshtml())
+    # HTML(ani.to_jshtml()) # This shouldn't be necessary
     return ani
