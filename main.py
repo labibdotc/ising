@@ -26,12 +26,12 @@ tempArr = []
 #
 
 # energies_m, mag_m, clones_m = algorithms.runMetropolis(globalLattice, plt, param_ncycles, param_T, param_kB)
-energies_w, mag_w, clones_w = algorithms.runWolff(globalLattice, plt, param_ncycles, param_T, param_J)
+# energies_w, mag_w, clones_w = algorithms.runWolff(globalLattice, plt, param_ncycles, param_T, param_J)
 
-ani = algorithms.animate(clones_w, plt)
-plt.show()
+# ani = algorithms.animate(clones_w, plt)
+# plt.show()
 
-## Metropolis ##
+# Metropolis ##
 # for n in range(250):
 #   energies_m, mag_m, clones_m = algorithms.runMetropolis(globalLattice, plt, param_ncycles, param_T, param_kB)
 #   mag_m = np.absolute(mag_m[100:])
@@ -42,6 +42,7 @@ plt.show()
 #   energiesArr.append(np.std(energies_m))
 #   tempArr.append(param_T)
 #   param_T = param_T + 0.04
+#   print('Iteration: ', n)
 
 ## Wolff ##
 # for n in range(500):
@@ -55,20 +56,20 @@ plt.show()
 #   tempArr.append(param_T)
 #   param_T = param_T + 0.01
 
-# plt.plot(tempArr, magnetizationArr)
-# plt.xlabel('Temperature (Nondimensionalized)')
-# plt.xlim(0,10)
-# plt.ylabel('Average Std Dev Abs Val Magnetization (Stable Zone)')
-# plt.suptitle('Std Dev Magnetization vs. Temperature', fontsize=14)
-# plt.title('Metropolis Algorithm | 250 Temperatures, 500 Cycles', fontsize=12)
-# plt.show()
+plt.plot(tempArr, magnetizationArr)
+plt.xlabel('Temperature (Nondimensionalized)')
+plt.xlim(0,10)
+plt.ylabel('Average Std Dev Abs Val Magnetization (Stable Zone)')
+plt.suptitle('Std Dev Magnetization vs. Temperature', fontsize=14)
+plt.title('Metropolis Algorithm | 250 Temperatures, 500 Cycles', fontsize=12)
+plt.show()
 
-# plt.plot(tempArr, energiesArr)
-# plt.xlabel('Temperature (Nondimensionalized)')
-# plt.xlim(0,10)
-# plt.ylabel('Average Std Dev Abs Val Energy (Stable Zone)')
-# plt.suptitle('Std Dev Energy vs. Temperature', fontsize=14)
-# plt.title('Metropolis Algorithm | 250 Temperatures, 500 Cycles', fontsize=12)
-# plt.show()
+plt.plot(tempArr, energiesArr)
+plt.xlabel('Temperature (Nondimensionalized)')
+plt.xlim(0,10)
+plt.ylabel('Average Std Dev Abs Val Energy (Stable Zone)')
+plt.suptitle('Std Dev Energy vs. Temperature', fontsize=14)
+plt.title('Metropolis Algorithm | 250 Temperatures, 500 Cycles', fontsize=12)
+plt.show()
 
 print("Done")
