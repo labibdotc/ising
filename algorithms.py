@@ -5,7 +5,7 @@ from matplotlib import animation, rc
 from IPython.display import HTML
 import numpy as np
 
-clonesOn = False
+clonesOn = True
 plotsOn = True
 
 def testAlgorithm(name, lattice: li.LatticeInterface, algorithm, plot) -> tuple[list[float],list[float],list[li.LatticeInterface]]:
@@ -43,12 +43,12 @@ def animate(clones, plot):
 
     def update(frame):
         nonlocal i
-        ax.clear()
-        ax.imshow(clones[i]._lattice.copy(), cmap='binary', interpolation='nearest')
-        ax.set_title(f"Step {frame}")
-        i += 1
-        return ax
+        if i < len(clones):
+          ax.clear()
+          ax.imshow(clones[i]._lattice.copy(), cmap='binary', interpolation='nearest')
+          ax.set_title(f"Step {frame}")
+          i += 1
+          return ax
 
     ani = animation.FuncAnimation(fig, update, frames=len(clones), interval=1, repeat=False)
-    # HTML(ani.to_jshtml()) # This shouldn't be necessary
     return ani

@@ -10,7 +10,7 @@ param_kB = 1
 param_J = 1
 param_ncycles = 10000
 
-algorithms.clonesOn = False
+algorithms.clonesOn = True
 algorithms.plotsOn = False
 
 # Create the lattice using the parameters
@@ -25,10 +25,14 @@ tempArr = []
 # Run the algorithms on the lattice
 #
 
-# energies_m, mag_m, clones_m = algorithms.runMetropolis(globalLattice, plt, param_ncycles, param_T, param_kB)
+energies_m, mag_m, clones_m = algorithms.runMetropolis(globalLattice, plt, param_ncycles, param_T, param_kB)
 energies_w, mag_w, clones_w = algorithms.runWolff(globalLattice, plt, param_ncycles, param_T, param_J)
 
-# ani = algorithms.animate(clones_w, plt)
+ani_w = algorithms.animate(clones_w, plt)
+ani_w.save('animation_w.mp4', writer='ffmpeg')
+# plt.show()
+ani_m = algorithms.animate(clones_m, plt)
+ani_m.save('animation_m.mp4', writer='ffmpeg')
 # plt.show()
 
 # Metropolis ##
@@ -45,16 +49,16 @@ energies_w, mag_w, clones_w = algorithms.runWolff(globalLattice, plt, param_ncyc
 #   print('Iteration: ', n)
 
 # Wolff ##
-for n in range(5):
-  energies_w, mag_w, clones_w = algorithms.runWolff(globalLattice, plt, param_ncycles, param_T, param_J)
-  mag_w = np.absolute(mag_w[2500:])
-  energies_w = np.absolute(energies_w[2500:])
-  print(np.std(mag_w))
-  print(np.std(energies_w))
-  magnetizationArr.append(np.std(mag_w))
-  energiesArr.append(np.std(energies_w))
-  tempArr.append(param_T)
-  param_T = param_T + 0.01
+# for n in range(5):
+  # energies_w, mag_w, clones_w = algorithms.runWolff(globalLattice, plt, param_ncycles, param_T, param_J)
+  # mag_w = np.absolute(mag_w[2500:])
+  # energies_w = np.absolute(energies_w[2500:])
+  # print(np.std(mag_w))
+  # print(np.std(energies_w))
+  # magnetizationArr.append(np.std(mag_w))
+  # energiesArr.append(np.std(energies_w))
+  # tempArr.append(param_T)
+  # param_T = param_T + 0.01
 
 plt.plot(tempArr, magnetizationArr)
 plt.xlabel('Temperature (Nondimensionalized)')
