@@ -1,3 +1,6 @@
+## LatticeInterface.py - Husam Adam, Trevor Wallace, Ryan Afzal, Labib Afia
+## This file defines our lattice interface class and is used to create our lattice
+
 class LatticeInterface:
   """Stores spin lattice data"""
 
@@ -20,10 +23,6 @@ class LatticeInterface:
   def getNeighbors(self, i: int) -> list[int]:
     """Returns a list of indices of the neighbors of the specified lattice point"""
     pass
-
-#   def clone(self) -> LatticeInterface:
-#     """Returns a copy of this LatticeInterface"""
-#     pass
 
   def flipSpin(self, i: int):
     """Flips the spin state [-1, 1] of the specified lattice point"""
