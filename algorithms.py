@@ -42,12 +42,13 @@ def animate(clones, plot):
     i = 0
 
     def update(frame):
+        nonlocal i
         ax.clear()
-        ax.imshow(clones[i], cmap='binary', interpolation='nearest')
+        ax.imshow(clones[i]._lattice.copy(), cmap='binary', interpolation='nearest')
         ax.set_title(f"Step {frame}")
         i += 1
         return ax
 
-    ani = animation.FuncAnimation(fig, update, frames=len(clones), interval=200, repeat=False)
+    ani = animation.FuncAnimation(fig, update, frames=len(clones), interval=1, repeat=False)
     # HTML(ani.to_jshtml()) # This shouldn't be necessary
     return ani
