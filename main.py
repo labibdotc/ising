@@ -65,16 +65,18 @@ for n in range(250):
 #Plot our graphs for Metropolis
 plt.plot(tempArr, magnetizationArr)
 plt.xlabel('Temperature (Nondimensionalized)')
+plt.xlim(0,10)
 plt.ylabel('Average Std Dev Abs Val Magnetization (Stable Zone)')
 plt.suptitle('Std Dev Magnetization vs. Temperature', fontsize=14)
-plt.title('Wolff Algorithm | 500 Temperatures, 5000 Cycles', fontsize=12)
+plt.title('Metropolis Algorithm | 250 Temperatures, 500 Cycles', fontsize=12)
 plt.show()
 
 plt.plot(tempArr, energiesArr)
 plt.xlabel('Temperature (Nondimensionalized)')
+plt.xlim(0,10)
 plt.ylabel('Average Std Dev Abs Val Energy (Stable Zone)')
 plt.suptitle('Std Dev Energy vs. Temperature', fontsize=14)
-plt.title('Wolff Algorithm | 500 Temperatures, 5000 Cycles', fontsize=12)
+plt.title('Metropolis Algorithm | 250 Temperatures, 500 Cycles', fontsize=12)
 plt.show()
 
 ## Wolff ##
